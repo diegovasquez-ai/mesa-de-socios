@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mesa de Socios</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-name">Mesa de Socios</span>
+    </div>
+    <ol class="stepper" id="stepper" aria-label="Progreso del consejo">
+      <li data-step="setup">Caso</li>
+      <li data-step="round1">Aperturas</li>
+      <li data-step="cruxes">Desacuerdos</li>
+      <li data-step="round2">Debate</li>
+      <li data-step="round3">Votación</li>
+      <li data-step="verdict">Veredicto</li>
+    </ol>
+    <div class="top-actions">
+      <span class="usage" id="usage" title="Tokens usados por esta app desde que arrancó"></span>
+      <button class="ghost" id="guideBtn" type="button">Cómo funciona</button>
+      <button class="ghost" id="historyBtn" type="button">Sesiones anteriores</button>
+      <button class="ghost" id="newBtn" type="button" hidden>Nueva pregunta</button>
+    </div>
+  </header>
+
+  <div class="topic" id="topic" hidden>
+    <div class="topic-main">
+      <div class="label">Sobre la mesa</div>
+      <h1 id="topicTitle"></h1>
+    </div>
+    <div class="options" id="options"></div>
+  </div>
+
+  <main class="layout">
+    <section class="stage-wrap" aria-label="La mesa del consejo">
+      <div class="stage" id="stage">
+        <div class="wall" aria-hidden="true"></div>
+        <div class="spot" id="spot" aria-hidden="true"></div>
+        <div id="seats"></div>
+        <div class="table" id="table" aria-hidden="true"></div>
+        <div id="plates"></div>
+        <svg class="links" id="links" aria-hidden="true"></svg>
+
+        <div class="center" id="center">
+          <div class="waiting" id="waiting" hidden>
+            <span class="pulse"><i></i>La sala está abierta</span>
+            <h2 data-type>Trae una decisión a la Mesa de Socios</h2>
+            <p>En Claude Code, escribe la línea de abajo con tu decisión. El consejo aparece aquí y la discute en vivo.</p>
+            <code>/mesa-de-socios ¿debería ...</code>
+            <div class="row"><button class="ghost" type="button" id="waitGuide">Qué poner en tu pregunta</button><button class="ghost" type="button" id="waitHistory">Ver un consejo anterior</button></div>
+          </div>
+
+          <form class="composer" id="composer" hidden>
+            <h2 data-type>¿Con qué decisión necesitas ayuda?</h2>
+            <textarea id="prompt" rows="3" placeholder="Dales la decisión, tus opciones, algunos números (facturación, caja, equipo) y hacia dónde te inclinas." required minlength="10"></textarea>
+            <div class="samples" id="samples"></div>
+            <div class="composer-row">
+              <div class="mode" role="radiogroup" aria-label="Tamaño del consejo">
+                <label><input type="radio" name="mode" value="full" checked><span>Consejo completo <small>7 asesores, 3 rondas</small></span></label>
+                <label><input type="radio" name="mode" value="quick"><span>Rápido <small>4 asesores, 2 rondas</small></span></label>
+              </div>
+              <button class="convene" type="submit" id="convene">Convocar al consejo</button>
+            </div>
+          </form>
+
+          <div class="caption" id="caption" hidden>
+            <div class="cap-head">
+              <span class="cap-av" id="capAv"></span>
+              <span class="cap-who" id="capWho"></span>
+              <span class="cap-tag" id="capTag"></span>
+            </div>
+            <p class="cap-text" id="capText"></p>
+            <div class="cap-sub" id="capSub"></div>
+          </div>
+
+          <div class="waitcard" id="waitcard" hidden aria-live="polite">
+            <div class="wc-top"><span class="wc-step" id="wcStep"></span><span class="wc-time" id="wcTime"></span></div>
+            <p class="wc-head" id="wcHead"></p>
+            <p class="wc-sub" id="wcSub"></p>
+            <p class="wc-muse" id="wcMuse"></p>
+            <div class="wc-bar"><i id="wcBar"></i></div>
+            <p class="wc-nudge" id="wcNudge" hidden>¿Hace rato que no pasa nada? Revisa Claude Code. Puede estar esperando a que respondas o apruebes algo.</p>
+          </div>
+
+          <div class="cruxes" id="cruxes" hidden></div>
+          <div class="plate" id="plate" hidden></div>
+        </div>
+
+        <div class="playbar" id="playbar" hidden>
+          <span class="queue" id="queueInfo"></span>
+          <div class="speed" role="radiogroup" aria-label="Velocidad de reproducción">
+            <button type="button" data-speed="1" aria-pressed="true">1x</button>
+            <button type="button" data-speed="1.6" aria-pressed="false">1.6x</button>
+            <button type="button" data-speed="2.5" aria-pressed="false">2.5x</button>
+          </div>
+          <button type="button" class="skip" id="skipBtn">Adelantar</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="panel" aria-label="Puntos clave">
+      <div class="panel-head" id="panelHead">Puntos clave</div>
+      <div class="tabpanel" id="feed">
+        <div class="empty">Una línea por asesor mientras habla el consejo. Haz clic en un asesor para leer su tarjeta completa.</div>
+      </div>
+    </aside>
+  </main>
+
+  <div class="sheet" id="verdictSheet" hidden>
+    <div class="sheet-inner" id="verdictBody"></div>
+  </div>
+
+  <dialog id="cardDialog" class="card-dialog">
+    <div id="cardBody"></div>
+    <form method="dialog"><button class="ghost">Cerrar</button></form>
+  </dialog>
+
+  <dialog id="guideDialog" class="card-dialog">
+    <div id="guideBody"></div>
+    <form method="dialog"><button class="ghost">Cerrar</button></form>
+  </dialog>
+
+  <dialog id="historyDialog" class="card-dialog">
+    <h3>Sesiones anteriores</h3>
+    <p class="muted">Vuelve a ver un consejo tal como ocurrió.</p>
+    <ul class="history" id="historyList"></ul>
+    <form method="dialog"><button class="ghost">Cerrar</button></form>
+  </dialog>
+
+  <div class="toast" id="toast" hidden></div>
+  <p class="disclaimer">Asesores simulados a partir del trabajo público de cada persona y dibujados como caricaturas. No son esas personas ni hablan en su nombre.</p>
+
+  <script src="/app.js" type="module"></script>
+</body>
+</html>

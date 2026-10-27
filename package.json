@@ -1,0 +1,13 @@
+{
+  "name": "mesa-de-socios",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mesa de Socios: doce asesores de IA, construidos a partir del trabajo público de Bezos, Paul Graham, Hormozi, Gary Vaynerchuk, Dan Martell, Gino Wickman, Buffett, Naval Ravikant, Codie Sanchez, Leila Hormozi, Sara Blakely y Elon Musk (más los que añadas con /nuevo-asesor), debaten tu decisión en Claude Code, en vivo alrededor de una mesa.",
+
+  "type": "module",
+  "scripts": {
+    "start": "node app/server.mjs",
+    "smoke": "node app/scripts/smoke.mjs"
+  },
+  "engines": { "node": ">=20" }
+}

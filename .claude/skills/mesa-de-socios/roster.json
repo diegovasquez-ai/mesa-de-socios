@@ -1,0 +1,18 @@
+{
+  "board": "ask",
+  "default": ["bezos", "graham", "hormozi", "garyvee", "martell", "wickman", "buffett"],
+  "seats": [
+    { "key": "bezos", "name": "Jeff Bezos", "short": "Bezos", "initials": "JB", "slug": "jeff-bezos", "pillar": "Estrategia y decisiones", "question": "¿Es la apuesta correcta, y qué tan reversible es?", "dimension": "Encaje estratégico y reversibilidad", "color": "#e8a33d" },
+    { "key": "graham", "name": "Paul Graham", "short": "Graham", "initials": "PG", "slug": "paul-graham", "pillar": "Producto y startups", "question": "¿La gente de verdad quiere esto, y está creciendo?", "dimension": "Demanda real y crecimiento", "color": "#f06b3f" },
+    { "key": "hormozi", "name": "Alex Hormozi", "short": "Hormozi", "initials": "AH", "slug": "alex-hormozi", "pillar": "Ofertas, precios y ventas", "question": "¿La gente va a pagar, cuánto, y cómo cerramos?", "dimension": "Fuerza de la oferta y economía unitaria", "color": "#d94a6a" },
+    { "key": "garyvee", "name": "Gary Vaynerchuk", "short": "Gary V", "initials": "GV", "slug": "gary-vaynerchuk", "pillar": "Marketing y atención", "question": "¿De dónde sale la atención, y está barata?", "dimension": "Atención y distribución", "color": "#9b5de5" },
+    { "key": "martell", "name": "Dan Martell", "short": "Martell", "initials": "DM", "slug": "dan-martell", "pillar": "Equipo, contrataciones y tu tiempo", "question": "¿Quién hace esto, y cuánto le cuesta a tu agenda?", "dimension": "Capacidad del equipo y tu tiempo", "color": "#3d8bfd" },
+    { "key": "wickman", "name": "Gino Wickman", "short": "Wickman", "initials": "GW", "slug": "gino-wickman", "pillar": "Operaciones y escala", "question": "¿Puede el negocio sostener esto sin que tú lo mantengas en pie?", "dimension": "Preparación operativa", "color": "#1fa67a" },
+    { "key": "buffett", "name": "Warren Buffett", "short": "Buffett", "initials": "WB", "slug": "warren-buffett", "pillar": "Dinero y capital", "question": "¿Qué le hace a la caja, al riesgo y al valor a largo plazo?", "dimension": "Riesgo a la baja y eficiencia del capital", "color": "#4c6a92" },
+    { "key": "naval", "name": "Naval Ravikant", "short": "Naval", "initials": "NR", "slug": "naval-ravikant", "pillar": "Apalancamiento y riqueza", "question": "¿Esto construye apalancamiento y patrimonio tuyo, o solo alquila tu tiempo?", "dimension": "Apalancamiento y propiedad", "color": "#22b8a0" },
+    { "key": "sanchez", "name": "Codie Sanchez", "short": "Codie", "initials": "CS", "slug": "codie-sanchez", "pillar": "Comprar y ser dueño de pequeñas empresas", "question": "¿Deberías construir esto, o comprar algo que ya funciona?", "dimension": "Comprar o construir, y términos del trato", "color": "#e05d9b" },
+    { "key": "blakely", "name": "Sara Blakely", "short": "Sara", "initials": "SB", "slug": "sara-blakely", "pillar": "Producto de consumo y marca desde cero", "question": "¿Lo van a amar tanto que lo vendan por ti, sin dinero externo?", "dimension": "Amor por el producto y crecimiento autofinanciado", "color": "#c9a227" },
+    { "key": "leila", "name": "Leila Hormozi", "short": "Leila", "initials": "LH", "slug": "leila-hormozi", "pillar": "Liderazgo y equipos que escalan", "question": "¿Pueden tu equipo y tu liderazgo cargar con esto, y quién tiene que cambiar?", "dimension": "Liderazgo y capacidad del equipo", "color": "#8fbf3a" },
+    { "key": "musk", "name": "Elon Musk", "short": "Elon", "initials": "EM", "slug": "elon-musk", "pillar": "Primeros principios y velocidad de ejecución", "question": "¿Cuál es la restricción real, y podemos quitar pasos y construirlo más rápido?", "dimension": "Restricciones reales y velocidad de ejecución", "color": "#c0392b" }
+  ]
+}
